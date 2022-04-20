@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Flood</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<style>
+.back{
+background-image: url("{{ url_for('static', filename='image/img.jpg') }}");
+ background-size:cover;
+ 
+}
+.white{
+color:white;
+}
+.space{
+margin:10px 30px;
+padding:15px 10px;
+background: palegreen;
+width:auto;
+}
+.nspace{
+margin:10px 30px;
+background: palegreen;
+width:auto;
+}
+.gap{
+padding:10px 20px;
+}
+
+</style>
+  
+</head>
+
+<body class="back">
+ <div>
+
+	<div class="jumbotron">
+	<h1 style="text-align:center"> FLOOD PREDICTION </h1>
+	
+	</div>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form class="form-group" action="{{ url_for('predict')}}"method="post">
+    <div class="container">
+	<div class="row">
+	<div class="gap col-md-6">
+		
+		<label class="white"  for="">STATE_UT_NAME</label>
+		<select class="nspace form-control" name="STATE_UT_NAME" id="STATE_UT_NAME">
+  			<option value=0>ANDAMAN And NICOBAR ISLANDS</option>
+
+  			<option value=2>ARUNACHAL PRADESH</option>
+
+			<option value=3>ASSAM</option>
+
+  			<option value=22>MEGHALAYA</option>
+
+			<option value=21>MANIPUR</option>
+
+  			<option value=23>MIZORAM</option>
+
+			<option value=24>NAGALAND</option>
+
+  			<option value=31>TRIPURA</option>
+
+			<option value=34>WEST BENGAL</option>
+
+  			<option value=29>SIKKIM</option>
+
+			<option value=25>ORISSA</option>
+
+  			<option value=15>JHARKHAND</option>
+
+			<option value=4>BIHAR</option>
+
+  			<option value=32>UTTAR PRADESH</option>
+
+			<option value=33>UTTARANCHAL</option>
+
+  			<option value=12>HARYANA</option>
+
+			<option value=5>CHANDIGARH</option>
+
+  			<option value=9>DELHI</option>
+
+			<option value=27>PUNJAB</option>
+
+  			<option value=13>HIMACHAL</option>
+
+			<option value=14>JAMMU AND KASHMIR</option>
+
+			<option value=28>RAJASTHAN</option>
+
+  			<option value=19>MADHYA PRADESH</option>
+
+			<option value=7>DADAR NAGAR HAVELI</option>
+
+  			<option value=8>DAMAN AND DUI</option>
+
+			<option value=20>MAHARASHTRA</option>
+
+  			<option value=10>GOA</option>
+
+			<option value=6>CHATISGARH</option>
+
+  			<option value=1>ANDHRA PRADESH</option>
+
+			<option value=30>TAMIL NADU</option>
+
+  			<option value=26>PONDICHERRY</option>
+
+			<option value=16>KARNATAKA</option>
+
+  			<option value=17>KERALA</option>
+
+			<option value=18>LAKSHADWEEP</option>
+ 		</select>		
+
+
+		<label class="white"  for=""> Jan-Feb</label>
+		<input type="number" class="space form-control" step="0.01" name=" Jan-Feb" placeholder="Jan-Feb" required="required" /><br>
+		<label class="white"  for="">Mar-May</label>
+		<input type="number" class="space form-control" step="0.01" name="Mar-May" placeholder="Mar-May" required="required" /><br>
+		
+		<label class="white"  for="">Jun-Sep</label>
+		<input type="number" class="space form-control" step="0.01" name="Jun-Sep" placeholder="Jun-Sep" required="required" /><br>
+		<label class="white"  for="">Oct-Dec</label>
+		<input type="number" class="space form-control" step="0.01" name="Oct-Dec" placeholder="Oct-Dec" required="required" /><br>
+		<label class="white"  for=""> ANNUAL</label>
+		<input type="number" class="space form-control" step="0.01" name="ANNUAL" placeholder="ANNUAL" required="required" /><br>
+		
+		
+</div>
+		
+</div>
+</div>
+
+<div style="padding:2% 35%">
+  <button type="submit" class="btn btn-success btn-block" style="width:350px;padding:20px">Predict</button>		
+</div>
+      
+    </form>
+
+   <br>
+   <br>
+<div  style="background:skyblue;padding:2% 40%">
+   {{ prediction_text }}
+</div>
+ </div>
+
+
+</body>
+</html>
